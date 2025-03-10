@@ -1,8 +1,8 @@
-Program areaQuadrado ;
+Program quadrado ;
 var
 	lado : real;
 Begin
     writeln('digite o tamanho dos lados do quadrado:');
     readln(lado);
-    writeln('a área do quadrado é: ', lado*lado);
+    writeln('a ï¿½rea do quadrado ï¿½: ', lado*lado);
 End.
