@@ -1,0 +1,15 @@
+
+
+.div_dados_pessoais{
+    background-color: rgb(111, 111, 247);
+}
+
+.div_dados_fisicos{
+    background-color: gray;
+    font-style: italic;
+}
+
+.div_endereco{
+    background-color: gray;
+    font-weight: bold;
+}

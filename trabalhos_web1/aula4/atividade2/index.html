@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
     <title>Cadastro</title>
 </head>
 <body>
     <fieldset>
         <legend>Formulário</legend>
         <form action="/cadastro.php" method="post">
-            <div>
+            <div class="div_dados_pessoais">
                 <fieldset>
                     <legend>Informações Pessoais</legend>
                     <label for="nome" >Nome</label>
@@ -20,12 +23,12 @@
                     <input type="text" name="sobrenome" maxlength="100" required>
                     <br>
     
-                    <label for="email">Email</label>
+                    <label for="email" id="email">Email</label>
                     <input type="email" name="email" required>
                 </fieldset>
             </div>
 
-            <div>
+            <div class="div_dados_fisicos">
                 <fieldset>
                     <legend>Dados Físicos</legend>
                     <label for="nascimento">Data de Nascimento</label>
@@ -40,7 +43,7 @@
                 </fieldset>
             </div>
 
-            <div>
+            <div class="div_endereco">
                 <fieldset>
                     <legend>Endereço</legend>
                     <label for="endereco">Endereço</label>
@@ -84,15 +87,17 @@
                 </fieldset>
             </div>
             
-            <div>
+            <div class="div_cor">
                 <label for="cor">Cor Favorita</label>
                 <input type="color" name="cor">
             </div>
 
-            <fieldset>
-                <input type="submit" value="Enviar">
-                <input type="reset" value="Limpar">
-            </fieldset>
+            <div class="div_enviar">
+                <fieldset>
+                    <input type="submit" value="Enviar" id="botao_enviar">
+                    <input type="reset" value="Limpar" id="botao_limpar">
+                </fieldset>
+            </div>
         </form>
     </fieldset>
 </body>
