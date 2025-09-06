@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="js.js"></script>
+
+    <title>Tabela de Notas</title>
+</head>
+<body>
+    <table id="tabela-notas" border="black">
+        <thead>
+            <tr>
+                <td rowspan="2" bgcolor="gray">Aluno</td>
+                <td colspan="3" bgcolor="gray">Semestre 1</td>
+                <td colspan="3" bgcolor="gray">Semestre 2</td>
+                <td colspan="3" bgcolor="gray">Semestre 3</td>
+            </tr>
+            <tr>
+                <td>Nota 1</td>
+                <td>Nota 2</td>
+                <td>Nota 3</td>
+                <td>Nota 1</td>
+                <td>Nota 2</td>
+                <td>Nota 3</td>
+                <td>Nota 1</td>
+                <td>Nota 2</td>
+                <td>Nota 3</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>João</td>
+                <td id="nota1_aluno1">10</td>
+                <td id="nota2_aluno1">8</td>
+                <td id="nota3_aluno1">9</td>
+                <td id="nota4_aluno1">6</td>
+                <td id="nota5_aluno1">8,7</td>
+                <td id="nota6_aluno1">10</td>
+                <td id="nota7_aluno1">6</td>
+                <td id="nota8_aluno1">7</td>
+                <td id="nota9_aluno1">9</td>
+            </tr>
+            <tr>    
+                <td>Maria</td>
+                <td id="nota1_aluno2">9</td>
+                <td id="nota2_aluno2">6</td>
+                <td id="nota3_aluno2">10</td>
+                <td id="nota4_aluno2">5</td>
+                <td id="nota5_aluno2">9</td>
+                <td id="nota6_aluno2">7</td>
+                <td id="nota7_aluno2">4</td>
+                <td id="nota8_aluno2">6</td>
+                <td id="nota9_aluno2">8</td>
+            </tr>
+            <tr>
+                <td>José</td>
+                <td id="nota1_aluno3">9</td>
+                <td id="nota2_aluno3">9</td>
+                <td id="nota3_aluno3">9</td>
+                <td id="nota4_aluno3">8</td>
+                <td id="nota5_aluno3">9</td>
+                <td id="nota6_aluno3">10</td>
+                <td id="nota7_aluno3">10</td>
+                <td id="nota8_aluno3">10</td>
+                <td id="nota9_aluno3">10</td>
+            </tr>
+            <tr>
+                <td>Paulo</td>
+                <td id="nota1_aluno4">3</td>
+                <td id="nota2_aluno4">2</td>
+                <td id="nota3_aluno4">1</td>
+                <td id="nota4_aluno4">1</td>
+                <td id="nota5_aluno4">2</td>
+                <td id="nota6_aluno4">7</td>
+                <td id="nota7_aluno4">3</td>
+                <td id="nota8_aluno4">2</td>
+                <td id="nota9_aluno4">2</td>
+            </tr>
+            <tr>
+                <td>Miguel</td>
+                <td id="nota1_aluno5">0</td>
+                <td id="nota2_aluno5">1</td>
+                <td id="nota3_aluno5">0</td>
+                <td id="nota4_aluno5">0</td>
+                <td id="nota5_aluno5">0</td>
+                <td id="nota6_aluno5">1</td>
+                <td id="nota7_aluno5">1</td>
+                <td id="nota8_aluno5">0</td>
+                <td id="nota9_aluno5">2</td>
+            </tr>
+            <tr>
+                <td>Júlia</td>
+                <td id="nota1_aluno6">10</td>
+                <td id="nota2_aluno6">9</td>
+                <td id="nota3_aluno6">5</td>
+                <td id="nota4_aluno6">5</td>
+                <td id="nota5_aluno6">5</td>
+                <td id="nota6_aluno6">4</td>
+                <td id="nota7_aluno6">7</td>
+                <td id="nota8_aluno6">4</td>
+                <td id="nota9_aluno6">2</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <button onclick="adicionaLinhaMedia()">Adicionar Linha de Média</button>
+    <button onclick="adicionaColunaMedia()">Adicionar Coluna de Média</button>
+</body>
+</html>
