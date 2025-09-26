@@ -13,7 +13,7 @@ $salario2 += 1;
 $salario1 *= 1.1;
 
 for ( $i = 0; $i < 100; $i++ ) {
-    if($i == 50){
+    if($i == 49){
         break;
     }   
     $salario1 ++;
