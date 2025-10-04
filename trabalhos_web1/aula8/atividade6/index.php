@@ -21,3 +21,7 @@ for($i = 0; $i < 5; $i++){
 }
 
 echo '</table>';
+
+// $arrayAlternativo = ['Disciplina' => ['Matemática', 'Português', 'Geografia', 'Educação Física'],
+//                      'Faltas'     => [5,             2,           10,          2               ],
+//                      'Média'      => [8.5,           9,           6,           8               ]];
