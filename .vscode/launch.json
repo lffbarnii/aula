@@ -13,7 +13,7 @@
         "request": "launch",
         "url":
         
-        "http://localhost:81/aula9/atividade2/${fileBasename}?XDEBUG_SESSION_START=XXXXXX",
+        "http://localhost:81/aula11/atividade1/${fileBasename}?XDEBUG_SESSION_START=XXXXXX",
         
         "webRoot": "${workspaceFolder}"
         }
