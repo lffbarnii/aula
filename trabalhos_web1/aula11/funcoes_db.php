@@ -1,65 +1,75 @@
 <?php
-
-/**
- * Classe bem bacana
- */
-class SQL{
-    public const HOST     = 'localhost',
-                 PORT     = '5432',
-                 DBNAME   = 'local',
-                 USER     = 'postgres',
+class SQL {
+    public const HOST = 'localhost',
+                 PORT = '5432',
+                 DBNAME = 'local',
+                 USER = 'postgres',
                  PASSWORD = 'postgres';
 
     private $conexao;
 
-    public function setConexao($conexao){
+    public function setConexao($conexao) {
         $this->conexao = $conexao;
     }
 
-    public function getConexao(){
-        if(!isset($this->conexao)){
+    public function getConexao() {
+        if (!isset($this->conexao)) {
             $this->conexao = $this->criaConexao();
         }
-
         return $this->conexao;
     }
 
-    private function criaConexao(){
-        $oConexao = pg_connect('host='.$this::HOST.' port='.$this::PORT.' dbname='.$this::DBNAME.' user='.$this::USER.' password='.$this::PASSWORD);
-    
-        return $oConexao;
+    private function criaConexao() {
+        return pg_connect(
+            'host=' . self::HOST .
+            ' port=' . self::PORT .
+            ' dbname=' . self::DBNAME .
+            ' user=' . self::USER .
+            ' password=' . self::PASSWORD
+        );
     }
+
+    public function select($oConexao, $sSchema, $sTabela, $aColunas, $sCondicoes = '') {
+        $aColunasEscapadas = array_map(function($coluna) {
+            return ($coluna === '*') ? '*' : pg_escape_identifier($coluna);
+        }, $aColunas);
     
-    public function select($oConexao, $sSchema, $sTabela, $aColunas, $sCondicoes){
-        $oQuery = pg_query($oConexao, 'select '.implode(',', $aColunas).' from '. $sSchema.'.'.$sTabela);
+        $query = 'SELECT ' . implode(',', $aColunasEscapadas) .
+                 ' FROM ' . pg_escape_identifier($sTabela) . ' ' . $sCondicoes;
+    
+        $result = pg_query($oConexao, $query);
+        if ($result === false) {
+            throw new Exception('Erro ao executar consulta: ' . pg_last_error($oConexao));
+        }
     
         $aResultado = [];
-    
-        while($aLinha = pg_fetch_assoc($oQuery)){
+        while ($aLinha = pg_fetch_assoc($result)) {
             $aResultado[] = $aLinha;
         }
     
         return $aResultado;
     }
-    
-    public function getStringValoresInsert($aInformacoes){
-        $aInserts = [];
-    
-        foreach($aInformacoes as $aInformacao){
-            $aArrayTratado = array_map(function($item) {
-                return '\'' . $item . '\'';
-            }, $aInformacao);
 
-            $aInserts[] = '('.implode(',', $aArrayTratado).')';
+    public function insert($oConexao, $sTabela, $aCampos, $aInformacoes) {
+        $sTabela = pg_escape_identifier($sTabela);
+        $aCamposEscapados = array_map('pg_escape_identifier', $aCampos);
+        $valores = array_map(function ($valor) {
+            return array_map(fn($v) => trim(htmlspecialchars($v, ENT_QUOTES, 'UTF-8')), $valor);
+        }, $aInformacoes);
+
+        $placeholders = [];
+        $params = [];
+        $i = 1;
+        foreach ($valores as $linha) {
+            $linhaPlaceholders = [];
+            foreach ($linha as $valor) {
+                $linhaPlaceholders[] = '$' . $i++;
+                $params[] = $valor;
+            }
+            $placeholders[] = '(' . implode(',', $linhaPlaceholders) . ')';
         }
-    
-        return implode(',', $aInserts);
-    }
-    
-    public function insert($oConexao, $sTabela, $aCampos, $aInformacoes){
-        $sStringInsert = $this->getStringValoresInsert($aInformacoes);
-    
-        return pg_query_params($oConexao, "insert into $sTabela (".implode(',', $aCampos).")
-                                    values $sStringInsert");
+
+        $query = "INSERT INTO $sTabela (" . implode(',', $aCamposEscapados) . ") VALUES " . implode(',', $placeholders);
+        return pg_query_params($oConexao, $query, $params);
     }
 }
