@@ -1,5 +1,7 @@
 <?php
 
+include_once '../funcoes_db.php';
+
 function criaTabela($aPessoas){
     echo '<table border="1">';
 
@@ -23,8 +25,6 @@ function criaTabela($aPessoas){
 
     echo '</table>';
 }
-
-include_once '../funcoes_db.php';
 
 try{
     $oSql = new SQL();
