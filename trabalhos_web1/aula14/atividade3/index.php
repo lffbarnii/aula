@@ -15,9 +15,9 @@ if($session->iniciaSessao()){
 
     if(!$session->getUsuarioSessao()){
         $usuario = new Usuario();
-        $usuario->setUserLogin('luis1234');
-        $usuario->setUserName('Luis');
-        $usuario->setUserPass('senha');
+        $usuario->setUserLogin($_POST['login']);
+        $usuario->setUserName($_POST['nome']);
+        $usuario->setUserPass($_POST['senha']);
         $session->setUsuarioSessao($usuario);
     }
     else{

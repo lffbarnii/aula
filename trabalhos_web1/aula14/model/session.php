@@ -15,15 +15,12 @@ class Session {
     public function iniciaSessao(){
         try{
             session_start();
-
             $this->sessionId = session_id();
 
             if($this->getDadoSessao('datahorainicio')){
                 $this->dataHoraInicio = $this->getDadoSessao('datahorainicio');
-
                 $this->dataHoraUltimoAcesso = date('Y-m-d H:i:s');
                 $this->setDadoSessao('datahoraultimoacesso', $this->dataHoraUltimoAcesso);
-
                 $this->usuario = $this->getDadoSessao('usuario');
             }
             else{
@@ -49,7 +46,7 @@ class Session {
 
     public function setUsuarioSessao($usuario){
         $this->usuario = $usuario;
-        $this->setDadoSessao('usuario', var_dump($usuario));
+        $this->setDadoSessao('usuario', serialize($usuario));
     }
 
     public function getDadoSessao($chave){
