@@ -11,7 +11,7 @@
 CREATE TABLE usuarios (
     id SERIAL PRIMARY KEY,
     login VARCHAR(50) UNIQUE NOT NULL,
-    senha VARCHAR(255) NOT NULL,  -- será armazenada criptografada (hash)
+    senha VARCHAR(255) NOT NULL,
     data_criacao DATE DEFAULT CURRENT_DATE
 );
 
@@ -48,7 +48,6 @@ CREATE TABLE perguntas (
 -- ================================================
 CREATE TABLE respostas (
     id SERIAL PRIMARY KEY,
-    setor_id INT REFERENCES setores(id) ON DELETE CASCADE,
     dispositivo_id INT REFERENCES dispositivos(id) ON DELETE CASCADE,
     pergunta_id INT REFERENCES perguntas(id) ON DELETE CASCADE,
     nota INT CHECK (nota BETWEEN 0 AND 10),
@@ -61,7 +60,6 @@ CREATE TABLE respostas (
 -- ================================================
 CREATE TABLE feedbacks (
     id SERIAL PRIMARY KEY,
-    setor_id INT REFERENCES setores(id) ON DELETE CASCADE,
     dispositivo_id INT REFERENCES dispositivos(id) ON DELETE CASCADE,
     data_feedback TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     texto TEXT
