@@ -1,0 +1,162 @@
+/* ======== Estilo Global ======== */
+body {
+    font-family: "Inter", Arial, sans-serif;
+    background-color: #f5f6fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 95%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ======== Header ======== */
+.site-header {
+    background-color: #1976d2;
+    color: white;
+    padding: 16px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+/* ======== Conteúdo ======== */
+.site-content {
+    padding: 40px 0;
+}
+
+/* ======== Footer ======== */
+.site-footer {
+    background-color: #222;
+    color: #bbb;
+    text-align: center;
+    padding: 16px 0;
+    margin-top: 60px;
+    font-size: 0.9rem;
+}
+
+.site-footer .anonimo {
+    color: #aaa;
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+}
+
+.site-footer .copy {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* ======== Layout da Avaliação ======== */
+.quiz-modal {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    padding: 32px;
+    text-align: center;
+}
+
+.quiz-modal h3 {
+    color: #1976d2;
+    margin-bottom: 12px;
+}
+
+.form-group {
+    margin: 18px 0;
+}
+
+textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 1rem;
+    resize: vertical;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: #1976d2;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+button:hover:not([disabled]) {
+    background: #125aa0;
+}
+
+/* ======== Escala de notas ======== */
+.escala-nota {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.escala-nota button {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #fff;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* Cores baseadas na escala */
+.escala-nota button:nth-child(1)  { background: #d32f2f; }
+.escala-nota button:nth-child(2)  { background: #e53935; }
+.escala-nota button:nth-child(3)  { background: #f4511e; }
+.escala-nota button:nth-child(4)  { background: #fb8c00; }
+.escala-nota button:nth-child(5)  { background: #fbc02d; }
+.escala-nota button:nth-child(6)  { background: #fdd835; color: #333; }
+.escala-nota button:nth-child(7)  { background: #dce775; color: #333; }
+.escala-nota button:nth-child(8)  { background: #aed581; color: #333; }
+.escala-nota button:nth-child(9)  { background: #81c784; color: #333; }
+.escala-nota button:nth-child(10) { background: #66bb6a; color: #fff; }
+.escala-nota button:nth-child(11) { background: #43a047; color: #fff; }
+
+.escala-nota button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 6px rgba(0,0,0,0.15);
+}
+
+.escala-nota .selecionado {
+    outline: 3px solid #00000055;
+    transform: scale(1.08);
+}
+
+.escala-nota button[disabled] {
+    opacity: 0.6;
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+button[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+button span[wire\:loading] {
+    font-style: italic;
+}
+
+/* ======== Mensagens ======== */
+.finalizado, .feedback {
+    text-align: center;
+}
+
+.error {
+    color: #d32f2f;
+    font-size: 0.9rem;
+}

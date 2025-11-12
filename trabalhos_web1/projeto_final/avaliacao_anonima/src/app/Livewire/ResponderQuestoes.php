@@ -5,33 +5,30 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Pergunta;
 use App\Models\Resposta;
+use App\Models\Feedback;
 
 class ResponderQuestoes extends Component
 {
     public $dispositivoId;
-    public $perguntas = [];      
+    public $perguntas;
     public $index = 0;
-    public $perguntaAtual = null;
     public $nota = null;
     public $texto = '';
     public $finalizado = false;
+    public $modoFeedback = false;
+    public $feedbackTexto = '';
+    public $perguntaAtual = null;
 
     public function mount($dispositivoId)
     {
         $this->dispositivoId = $dispositivoId;
 
-        $query = Pergunta::query();
-
-        if (\Schema::hasColumn((new Pergunta)->getTable(), 'ordem')) {
-            $query->orderBy('ordem');
-        } else {
-            $query->orderBy('id');
-        }
-
-        $this->perguntas = $query->where('status', true)->get()->all();
+        $this->perguntas = Pergunta::where('status', true)
+            ->orderBy('id')
+            ->get()
+            ->all();
 
         $this->perguntaAtual = $this->perguntas[$this->index] ?? null;
-
         if (!$this->perguntaAtual) {
             $this->finalizado = true;
         }
@@ -39,19 +36,16 @@ class ResponderQuestoes extends Component
 
     public function responder()
     {
-        if ($this->finalizado) {
+        if ($this->finalizado || $this->modoFeedback) {
             return;
         }
 
         $this->validate([
             'nota' => 'required|integer|between:0,10',
-            'texto' => 'nullable|string|max:2000',
+            'texto' => 'nullable|string|max:2000'
         ]);
 
-        if (!$this->perguntaAtual) {
-            $this->finalizado = true;
-            return;
-        }
+        if (!$this->perguntaAtual) return;
 
         Resposta::create([
             'dispositivo_id' => $this->dispositivoId,
@@ -63,14 +57,31 @@ class ResponderQuestoes extends Component
 
         $this->nota = null;
         $this->texto = '';
+
         $this->index++;
 
         if (isset($this->perguntas[$this->index])) {
             $this->perguntaAtual = $this->perguntas[$this->index];
         } else {
             $this->perguntaAtual = null;
-            $this->finalizado = true;
+            $this->modoFeedback = true;
         }
+    }
+
+    public function enviarFeedback()
+    {
+        $this->validate([
+            'feedbackTexto' => 'nullable|string|max:5000'
+        ]);
+
+        Feedback::create([
+            'dispositivo_id' => $this->dispositivoId,
+            'texto' => $this->feedbackTexto ?: null,
+            'data_feedback' => now(),
+        ]);
+
+        $this->finalizado = true;
+        $this->modoFeedback = false;
     }
 
     public function render()

@@ -7,18 +7,27 @@
     @livewireStyles
 </head>
 <body>
-    <header>
-        <h1>Sistema de Avaliação</h1>
-        <hr>
+    <header class="site-header">
+        <div class="container">
+            <h1>Sistema de Avaliação</h1>
+        </div>
     </header>
 
-    <main>
-        @yield('content')
+    <main class="site-content">
+        <div class="container">
+            @yield('content')
+        </div>
     </main>
 
-    <hr>
-    <footer>
-        <p>&copy; {{ date('Y') }} - Sistema de Avaliação</p>
+    <footer class="site-footer">
+        <div class="container">
+            <p class="anonimo">
+                Sua avaliação espontânea é anônima, nenhuma informação pessoal é solicitada ou armazenada.
+            </p>
+            <p class="copy">
+                &copy; {{ date('Y') }} - Sistema de Avaliação
+            </p>
+        </div>
     </footer>
 
     <script src="{{ asset('js/app.js') }}"></script>

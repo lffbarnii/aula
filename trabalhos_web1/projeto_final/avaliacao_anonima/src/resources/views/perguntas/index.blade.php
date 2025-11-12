@@ -3,7 +3,6 @@
 @section('title', 'Avaliação')
 
 @section('content')
-    <h1>Responder Avaliação</h1>
-
+    <h2 class="titulo-principal">Responder Avaliação</h2>
     <livewire:responder-questoes :dispositivo-id="$dispositivo_id" />
 @endsection
