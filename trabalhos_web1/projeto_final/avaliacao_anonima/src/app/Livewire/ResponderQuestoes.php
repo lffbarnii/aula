@@ -74,11 +74,13 @@ class ResponderQuestoes extends Component
             'feedbackTexto' => 'nullable|string|max:5000'
         ]);
 
-        Feedback::create([
-            'dispositivo_id' => $this->dispositivoId,
-            'texto' => $this->feedbackTexto ?: null,
-            'data_feedback' => now(),
-        ]);
+        if($this->feedbackTexto){
+            Feedback::create([
+                'dispositivo_id' => $this->dispositivoId,
+                'texto' => $this->feedbackTexto ?: null,
+                'data_feedback' => now(),
+            ]);
+        }
 
         $this->finalizado = true;
         $this->modoFeedback = false;
