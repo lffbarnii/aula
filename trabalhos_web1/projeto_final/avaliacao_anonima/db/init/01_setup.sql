@@ -40,7 +40,8 @@ CREATE TABLE perguntas (
     id SERIAL PRIMARY KEY,
     texto TEXT NOT NULL,
     ordem INTEGER,
-    status BOOLEAN DEFAULT TRUE
+    status BOOLEAN DEFAULT TRUE,
+    setor_id INT REFERENCES setores(id) ON DELETE SET NULL
 );
 
 -- ================================================

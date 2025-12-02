@@ -1,29 +1,46 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Usuários</title>
-</head>
-<body>
-    <h1>Usuários Cadastrados</h1>
+@extends('layouts.padrao')
+@section('title', 'Usuários')
 
-    <table border="1" cellpadding="8">
+@section('content')
+<div class="container">
+
+    <h1>Lista de Usuários</h1>
+
+    <a href="{{ route('usuarios.create') }}">
+        <button>Criar novo usuário</button>
+    </a>
+
+    <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Login</th>
-                <th>Data de Criação</th>
+                <th>Ações</th>
             </tr>
         </thead>
+
         <tbody>
-            @foreach($usuarios as $usuario)
+            @foreach ($usuarios as $usuario)
                 <tr>
                     <td>{{ $usuario->id }}</td>
                     <td>{{ $usuario->login }}</td>
-                    <td>{{ $usuario->data_criacao }}</td>
+
+                    <td>
+                        <a href="{{ route('usuarios.edit', $usuario->id) }}">
+                            <button>Editar</button>
+                        </a>
+
+                        <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" style="display:inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Excluir</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
+
     </table>
-</body>
-</html>
+
+</div>
+@endsection
