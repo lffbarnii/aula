@@ -7,34 +7,35 @@
     <h3>Perguntas Cadastradas</h3>
 
     <a href="{{ route('perguntas.create') }}">
-        <button style="margin-bottom:16px;">+ Nova Pergunta</button>
+        <button class="btn-new">+ Nova Pergunta</button>
     </a>
 
-    <table style="width:100%; border-collapse:collapse;">
+    <table>
         <thead>
-            <tr style="background:#e3eaf5;">
-                <th style="padding:10px;text-align:left;">ID</th>
-                <th style="padding:10px;text-align:left;">Texto</th>
-                <th style="padding:10px;">Ordem</th>
-                <th style="padding:10px;">Status</th>
-                <th style="padding:10px;">Setor</th>
-                <th style="padding:10px;">Ações</th>
+            <tr>
+                <th>ID</th>
+                <th>Texto</th>
+                <th class="center">Ordem</th>
+                <th class="center">Status</th>
+                <th class="center">Setor</th>
+                <th class="center">Ações</th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach ($perguntas as $p)
-            <tr style="border-bottom:1px solid #ddd;">
-                <td style="padding:10px;">{{ $p->id }}</td>
-                <td style="padding:10px;">{{ $p->texto }}</td>
-                <td style="padding:10px;">{{ $p->ordem }}</td>
-                <td style="padding:10px;">{{ $p->status ? 'Ativa' : 'Inativa' }}</td>
-                <td style="padding:10px;">{{ $p->setor->descricao ?? '-' }}</td>
-                <td style="text-align:center;padding:10px;">
+            @foreach ($perguntas->sortBy('id') as $p)
+            <tr>
+                <td>{{ $p->id }}</td>
+                <td>{{ $p->texto }}</td>
+                <td class="center">{{ $p->ordem }}</td>
+                <td class="center">{{ $p->status ? 'Ativa' : 'Inativa' }}</td>
+                <td class="center">{{ $p->setor->descricao ?? '-' }}</td>
+                <td class="center">
                     <a href="{{ route('perguntas.edit', $p->id) }}">Editar</a> |
-                    <form method="POST" action="{{ route('perguntas.destroy', $p->id) }}" style="display:inline;">
-                        @csrf @method('DELETE')
-                        <button style="background:#d32f2f;">Excluir</button>
+                    <form method="POST" action="{{ route('perguntas.destroy', $p->id) }}" class="inline-form">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn-delete">Excluir</button>
                     </form>
                 </td>
             </tr>

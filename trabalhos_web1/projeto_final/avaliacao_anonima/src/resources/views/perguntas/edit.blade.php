@@ -12,37 +12,35 @@
 
         <div class="form-group">
             <label>Texto:</label>
-            <textarea name="texto">{{ $pergunta->texto }}</textarea>
+            <textarea name="texto" rows="4">{{ $pergunta->texto }}</textarea>
         </div>
 
         <div class="form-group">
             <label>Ordem:</label>
-            <input type="number" name="ordem"
-                style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc;"
-                value="{{ $pergunta->ordem }}">
+            <input type="number" name="ordem" value="{{ $pergunta->ordem }}">
         </div>
 
         <div class="form-group">
-            <label>Status:</label><br>
-            <input type="hidden" name="status" value="0">
-            <input type="checkbox" name="status" value="1" {{ $pergunta->status ? 'checked' : '' }}>
+            <label>
+                <input type="hidden" name="status" value="0">
+                <input type="checkbox" name="status" value="1" {{ $pergunta->status ? 'checked' : '' }}>
+                <span>Ativa</span>
+            </label>
         </div>
 
         <div class="form-group">
             <label>Setor:</label>
-            <select name="setor_id"
-                style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc;">
+            <select name="setor_id">
                 <option value="">Nenhum</option>
                 @foreach ($setores as $s)
-                    <option value="{{ $s->id }}"
-                        {{ $pergunta->setor_id == $s->id ? 'selected' : '' }}>
+                    <option value="{{ $s->id }}" {{ $pergunta->setor_id == $s->id ? 'selected' : '' }}>
                         {{ $s->descricao }}
                     </option>
                 @endforeach
             </select>
         </div>
 
-        <button>Salvar</button>
+        <button type="submit">Salvar</button>
     </form>
 </div>
 

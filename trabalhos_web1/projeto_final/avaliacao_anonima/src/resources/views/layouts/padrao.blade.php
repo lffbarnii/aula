@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Sistema de Avaliação')</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @livewireStyles
@@ -10,6 +11,34 @@
     <header class="site-header">
         <div class="container">
             <h1>Sistema de Avaliação</h1>
+            <nav class="main-nav">
+                @auth
+                    <a href="{{ route('usuarios.index') }}" class="{{ request()->routeIs('usuarios.*') ? 'active' : '' }}">
+                        Usuários
+                    </a>
+                    <a href="{{ route('setores.index') }}" class="{{ request()->routeIs('setores.*') ? 'active' : '' }}">
+                        Setores
+                    </a>
+                    <a href="{{ route('dispositivos.index') }}" class="{{ request()->routeIs('dispositivos.*') ? 'active' : '' }}">
+                        Dispositivos
+                    </a>
+                    <a href="{{ route('perguntas.index') }}" class="{{ request()->routeIs('perguntas.*') ? 'active' : '' }}">
+                        Perguntas
+                    </a>
+                @endauth
+                <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">
+                    Avaliação
+                </a>
+
+                @auth
+                    <form action="{{ route('logout') }}" method="POST" class="inline-form">
+                        @csrf
+                        <button type="submit" style="background: rgba(255,255,255,0.2);">Sair</button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}">Login</a>
+                @endauth
+            </nav>
         </div>
     </header>
 
@@ -30,7 +59,7 @@
         </div>
     </footer>
 
-    <script src="{{ asset('js/app.js') }}"></script>
     @livewireScripts
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

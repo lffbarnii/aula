@@ -2,9 +2,9 @@
 @section('title', 'Cadastrar Usuário')
 
 @section('content')
-<div class="container">
 
-    <h1>Criar Usuário</h1>
+<div class="quiz-modal">
+    <h3>Criar Usuário</h3>
 
     <form action="{{ route('usuarios.store') }}" method="POST">
         @csrf
@@ -22,11 +22,11 @@
         <button type="submit">Salvar</button>
     </form>
 
-    <br>
-
-    <a href="{{ route('usuarios.index') }}">
-        <button>Voltar</button>
-    </a>
-
+    <div class="actions">
+        <a href="{{ route('usuarios.index') }}">
+            <button type="button">Voltar</button>
+        </a>
+    </div>
 </div>
+
 @endsection

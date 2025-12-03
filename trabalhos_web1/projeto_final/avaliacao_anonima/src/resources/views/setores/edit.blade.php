@@ -12,16 +12,13 @@
 
         <div class="form-group">
             <label>Descrição:</label>
-            <input type="text" name="descricao"
-                style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc;"
-                value="{{ $setor->descricao }}">
+            <input type="text" name="descricao" value="{{ $setor->descricao }}">
+            @error('descricao')
+                <p class="error">{{ $message }}</p>
+            @enderror
         </div>
 
-        @error('descricao')
-            <p class="error">{{ $message }}</p>
-        @enderror
-
-        <button>Salvar</button>
+        <button type="submit">Salvar</button>
     </form>
 </div>
 

@@ -11,20 +11,20 @@
 
         <div class="form-group">
             <label>Descrição:</label>
-            <input type="text" name="descricao"
-            style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc;">
+            <input type="text" name="descricao" value="{{ old('descricao') }}">
         </div>
 
         <div class="form-group">
-            <label>Status:</label><br>
-            <input type="checkbox" name="status" checked>
-            <span>Ativo</span>
+            <label>
+                <input type="hidden" name="status" value="0">
+                <input type="checkbox" name="status" checked>
+                <span>Ativo</span>
+            </label>
         </div>
 
         <div class="form-group">
             <label>Setor:</label>
-            <select name="setor_id"
-                style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc;">
+            <select name="setor_id">
                 <option value="">Nenhum</option>
                 @foreach ($setores as $s)
                     <option value="{{ $s->id }}">{{ $s->descricao }}</option>
@@ -32,8 +32,7 @@
             </select>
         </div>
 
-        <button>Cadastrar</button>
-
+        <button type="submit">Cadastrar</button>
     </form>
 </div>
 

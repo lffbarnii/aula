@@ -11,16 +11,13 @@
 
         <div class="form-group">
             <label>Descrição:</label>
-            <input type="text" name="descricao" class="form-control"
-                style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc;"
-                value="{{ old('descricao') }}">
-
+            <input type="text" name="descricao" value="{{ old('descricao') }}">
             @error('descricao')
                 <p class="error">{{ $message }}</p>
             @enderror
         </div>
 
-        <button>Cadastrar</button>
+        <button type="submit">Cadastrar</button>
     </form>
 </div>
 

@@ -12,33 +12,30 @@
 
         <div class="form-group">
             <label>Descrição:</label>
-            <input type="text" name="descricao"
-                style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc;"
-                value="{{ $dispositivo->descricao }}">
+            <input type="text" name="descricao" value="{{ $dispositivo->descricao }}">
         </div>
 
         <div class="form-group">
-            <label>Status:</label><br>
-            <input type="hidden" name="status" value="0">
-            <input type="checkbox" name="status" value="1" {{ $dispositivo->status ? 'checked' : '' }}>
-            <span>Ativo</span>
+            <label>
+                <input type="hidden" name="status" value="0">
+                <input type="checkbox" name="status" value="1" {{ $dispositivo->status ? 'checked' : '' }}>
+                <span>Ativo</span>
+            </label>
         </div>
 
         <div class="form-group">
             <label>Setor:</label>
-            <select name="setor_id"
-                style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc;">
+            <select name="setor_id">
                 <option value="">Nenhum</option>
-                @foreach($setores as $s)
-                    <option value="{{ $s->id }}" 
-                        {{ $dispositivo->setor_id == $s->id ? 'selected' : '' }}>
+                @foreach ($setores as $s)
+                    <option value="{{ $s->id }}" {{ $dispositivo->setor_id == $s->id ? 'selected' : '' }}>
                         {{ $s->descricao }}
                     </option>
                 @endforeach
             </select>
         </div>
 
-        <button>Salvar</button>
+        <button type="submit">Salvar</button>
     </form>
 </div>
 

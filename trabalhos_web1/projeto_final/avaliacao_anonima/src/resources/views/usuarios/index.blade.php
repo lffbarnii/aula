@@ -2,12 +2,12 @@
 @section('title', 'Usuários')
 
 @section('content')
-<div class="container">
 
-    <h1>Lista de Usuários</h1>
+<div class="quiz-modal">
+    <h3>Lista de Usuários</h3>
 
     <a href="{{ route('usuarios.create') }}">
-        <button>Criar novo usuário</button>
+        <button class="btn-new">+ Criar Novo Usuário</button>
     </a>
 
     <table>
@@ -15,32 +15,27 @@
             <tr>
                 <th>ID</th>
                 <th>Login</th>
-                <th>Ações</th>
+                <th class="center">Ações</th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach ($usuarios as $usuario)
-                <tr>
-                    <td>{{ $usuario->id }}</td>
-                    <td>{{ $usuario->login }}</td>
-
-                    <td>
-                        <a href="{{ route('usuarios.edit', $usuario->id) }}">
-                            <button>Editar</button>
-                        </a>
-
-                        <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" style="display:inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Excluir</button>
-                        </form>
-                    </td>
-                </tr>
+            @foreach ($usuarios->sortBy('id') as $usuario)
+            <tr>
+                <td>{{ $usuario->id }}</td>
+                <td>{{ $usuario->login }}</td>
+                <td class="center">
+                    <a href="{{ route('usuarios.edit', $usuario->id) }}">Editar</a> |
+                    <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" class="inline-form">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn-delete">Excluir</button>
+                    </form>
+                </td>
+            </tr>
             @endforeach
         </tbody>
-
     </table>
-
 </div>
+
 @endsection

@@ -1,5 +1,4 @@
 @extends('layouts.padrao')
-
 @section('title', 'Avaliação')
 
 @section('content')

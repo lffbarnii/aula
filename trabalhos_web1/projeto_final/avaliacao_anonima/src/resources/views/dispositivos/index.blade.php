@@ -7,33 +7,33 @@
     <h3>Dispositivos</h3>
 
     <a href="{{ route('dispositivos.create') }}">
-        <button style="margin-bottom: 16px;">+ Novo Dispositivo</button>
+        <button class="btn-new">+ Novo Dispositivo</button>
     </a>
 
-    <table style="width:100%; border-collapse:collapse;">
+    <table>
         <thead>
-            <tr style="background:#e3eaf5;">
-                <th style="padding:10px;text-align:left;">ID</th>
-                <th style="padding:10px;text-align:left;">Descrição</th>
-                <th style="padding:10px;">Status</th>
-                <th style="padding:10px;">Setor</th>
-                <th style="padding:10px;">Ações</th>
+            <tr>
+                <th>ID</th>
+                <th>Descrição</th>
+                <th class="center">Status</th>
+                <th class="center">Setor</th>
+                <th class="center">Ações</th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach ($dispositivos as $item)
-            <tr style="border-bottom: 1px solid #ddd;">
-                <td style="padding:10px;">{{ $item->id }}</td>
-                <td style="padding:10px;">{{ $item->descricao }}</td>
-                <td style="padding:10px;">{{ $item->status ? 'Ativo' : 'Inativo' }}</td>
-                <td style="padding:10px;">{{ $item->setor->descricao ?? '-' }}</td>
-                <td style="padding:10px;text-align:center;">
+            @foreach ($dispositivos->sortBy('id') as $item)
+            <tr>
+                <td>{{ $item->id }}</td>
+                <td>{{ $item->descricao }}</td>
+                <td class="center">{{ $item->status ? 'Ativo' : 'Inativo' }}</td>
+                <td class="center">{{ $item->setor->descricao ?? '-' }}</td>
+                <td class="center">
                     <a href="{{ route('dispositivos.edit', $item->id) }}">Editar</a> |
-                    <form method="POST" action="{{ route('dispositivos.destroy', $item->id) }}" style="display:inline;">
+                    <form method="POST" action="{{ route('dispositivos.destroy', $item->id) }}" class="inline-form">
                         @csrf
                         @method('DELETE')
-                        <button style="background:#d32f2f;">Excluir</button>
+                        <button type="submit" class="btn-delete">Excluir</button>
                     </form>
                 </td>
             </tr>

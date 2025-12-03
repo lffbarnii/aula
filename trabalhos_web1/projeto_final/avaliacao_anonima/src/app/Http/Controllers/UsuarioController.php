@@ -22,17 +22,20 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'login' => 'required|string|max:50|unique:usuarios',
-            'senha' => 'required|string|min:4'
+            'login' => 'required|string|unique:usuarios',
+            'senha' => 'required|string|min:6'
         ]);
 
         Usuario::create([
             'login' => $request->login,
-            'senha' => Hash::make($request->senha)
+            'senha' => bcrypt($request->senha)  // ← Adicione bcrypt()
         ]);
 
-        return redirect()->route('usuarios.index')->with('success', 'Usuário criado!');
+        return redirect()->route('usuarios.index')
+            ->with('success', 'Usuário criado com sucesso!');
     }
+
+
 
     public function edit(Usuario $usuario)
     {
@@ -42,18 +45,20 @@ class UsuarioController extends Controller
     public function update(Request $request, Usuario $usuario)
     {
         $request->validate([
-            'login' => 'required|string|max:50|unique:usuarios,login,' . $usuario->id
+            'login' => 'required|string|unique:usuarios,login,' . $usuario->id,
+            'senha' => 'nullable|string|min:6'
         ]);
 
-        $data = ['login' => $request->login];
-
+        $usuario->login = $request->login;
+        
         if ($request->filled('senha')) {
-            $data['senha'] = Hash::make($request->senha);
+            $usuario->senha = bcrypt($request->senha);  // ← Adicione bcrypt()
         }
+        
+        $usuario->save();
 
-        $usuario->update($data);
-
-        return redirect()->route('usuarios.index')->with('success', 'Usuário atualizado!');
+        return redirect()->route('usuarios.index')
+            ->with('success', 'Usuário atualizado com sucesso!');
     }
 
     public function destroy(Usuario $usuario)

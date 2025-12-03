@@ -16,7 +16,8 @@ class PerguntaController extends Controller
 
     public function create()
     {
-        return view('perguntas.create');
+        $setores = Setor::all();
+        return view('perguntas.create', compact( 'setores'));
     }
 
     public function store(Request $request)
@@ -53,7 +54,8 @@ class PerguntaController extends Controller
         $pergunta->update([
             'texto' => $request->texto,
             'ordem' => $request->ordem,
-            'status' => $request->status ?? true
+            'status' => $request->status ?? true,
+            'setor_id' => $request->setor_id
         ]);
 
         return redirect()->route('perguntas.index')->with('success', 'Pergunta atualizada!');

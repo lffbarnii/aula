@@ -1,32 +1,30 @@
 <div class="quiz-page">
     <div class="quiz-modal">
-        {{-- Mensagem final --}}
         @if ($finalizado)
             <div class="finalizado">
                 <h2>O Estabelecimento agradece sua resposta!</h2>
                 <p>Ela é muito importante para nós, pois nos ajuda a melhorar continuamente nossos serviços.</p>
             </div>
 
-        {{-- Etapa de feedback aberto --}}
         @elseif ($modoFeedback)
             <div class="feedback">
                 <h3>Deixe um comentário geral</h3>
                 <p>Quer compartilhar algo sobre sua experiência? (opcional)</p>
 
                 <form wire:submit.prevent="enviarFeedback">
-                    <textarea wire:model.defer="feedbackTexto" rows="5" placeholder="Escreva aqui..."></textarea>
-
-                    <div class="actions">
-                        <button type="submit" wire:loading.attr="disabled" wire:target="responder">
-                            <span wire:loading.remove wire:target="responder">Enviar</span>
-                            <span wire:loading wire:target="responder">Enviando...</span>
-                        </button>
+                    <div class="form-group">
+                        <textarea wire:model.defer="feedbackTexto" rows="5" placeholder="Escreva aqui..."></textarea>
                     </div>
 
+                    <div class="actions">
+                        <button type="submit" wire:loading.attr="disabled" wire:target="enviarFeedback">
+                            <span wire:loading.remove wire:target="enviarFeedback">Enviar</span>
+                            <span wire:loading wire:target="enviarFeedback">Enviando...</span>
+                        </button>
+                    </div>
                 </form>
             </div>
 
-        {{-- Etapa das perguntas --}}
         @else
             <div class="questao">
                 <h3>Pergunta {{ $index + 1 }}</h3>
@@ -49,16 +47,11 @@
                                 wire:target="$set('nota', {{ $i }})"
                                 class="{{ $nota === $i ? 'selecionado' : '' }}"
                             >
-                                <span wire:loading.remove wire:target="$set('nota', {{ $i }})">
-                                    {{ $i }}
-                                </span>
-                                <span wire:loading wire:target="$set('nota', {{ $i }})">
-                                    Carregando...
-                                </span>
+                                <span wire:loading.remove wire:target="$set('nota', {{ $i }})">{{ $i }}</span>
+                                <span wire:loading wire:target="$set('nota', {{ $i }})">...</span>
                             </button>
                         @endfor
                     </div>
-
                     @error('nota') <span class="error">{{ $message }}</span> @enderror
                 </div>
 
@@ -69,12 +62,10 @@
                 </div>
 
                 <div class="actions">
-                    <div class="actions">
-                        <button type="submit" wire:loading.attr="disabled">
-                            <span wire:loading.remove>Enviar</span>
-                            <span wire:loading>Carregando...</span>
-                        </button>  
-                    </div>
+                    <button type="submit" wire:loading.attr="disabled">
+                        <span wire:loading.remove>Enviar</span>
+                        <span wire:loading>Carregando...</span>
+                    </button>
                 </div>
             </form>
         @endif

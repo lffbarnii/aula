@@ -2,9 +2,9 @@
 @section('title', 'Editar Usuário')
 
 @section('content')
-<div class="container">
 
-    <h1>Editar Usuário</h1>
+<div class="quiz-modal">
+    <h3>Editar Usuário</h3>
 
     <form action="{{ route('usuarios.update', $usuario->id) }}" method="POST">
         @csrf
@@ -23,11 +23,11 @@
         <button type="submit">Atualizar</button>
     </form>
 
-    <br>
-
-    <a href="{{ route('usuarios.index') }}">
-        <button>Voltar</button>
-    </a>
-
+    <div class="actions">
+        <a href="{{ route('usuarios.index') }}">
+            <button type="button">Voltar</button>
+        </a>
+    </div>
 </div>
+
 @endsection
