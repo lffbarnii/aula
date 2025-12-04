@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Pergunta;
 use App\Models\Resposta;
 use App\Models\Feedback;
+use App\Models\Dispositivo;
 
 class ResponderQuestoes extends Component
 {
@@ -20,19 +21,31 @@ class ResponderQuestoes extends Component
     public $perguntaAtual = null;
 
     public function mount($dispositivoId)
-    {
-        $this->dispositivoId = $dispositivoId;
+{
+    $this->dispositivoId = $dispositivoId;
 
-        $this->perguntas = Pergunta::where('status', true)
-            ->orderBy('id')
-            ->get()
-            ->all();
+    $dispositivo = Dispositivo::with('setor')->find($dispositivoId);
 
-        $this->perguntaAtual = $this->perguntas[$this->index] ?? null;
-        if (!$this->perguntaAtual) {
-            $this->finalizado = true;
-        }
+    $this->perguntas = Pergunta::where('status', true)
+        ->where(function($query) use ($dispositivo) {
+            if ($dispositivo && $dispositivo->setor_id) {
+                $query->where('setor_id', $dispositivo->setor_id)
+                      ->orWhereNull('setor_id');
+            } else {
+                $query->whereNull('setor_id');
+            }
+        })
+        ->orderBy('ordem')
+        ->orderBy('id')
+        ->get()
+        ->all();
+
+    $this->perguntaAtual = $this->perguntas[$this->index] ?? null;
+    
+    if (!$this->perguntaAtual) {
+        $this->finalizado = true;
     }
+}
 
     public function responder()
     {

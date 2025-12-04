@@ -270,3 +270,118 @@ button span[wire\:loading] {
     font-size: 0.9rem;
     margin-top: 4px;
 }
+
+.success-message {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.info-message {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+.filtro-form {
+    margin-bottom: 24px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.stat-card {
+    background: #f5f6fa;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-card h4 {
+    margin: 0 0 8px 0;
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1976d2;
+    margin: 0;
+}
+
+.stat-text {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0;
+}
+
+.graficos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 24px;
+    margin: 32px 0;
+}
+
+.grafico-box {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.grafico-box h4 {
+    margin-top: 0;
+    color: #1976d2;
+    text-align: center;
+}
+
+.tabela-secao {
+    margin: 32px 0;
+}
+
+.tabela-secao h4 {
+    color: #1976d2;
+    margin-bottom: 12px;
+}
+
+.nota-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+}
+
+.nota-badge.nota-0,
+.nota-badge.nota-1,
+.nota-badge.nota-2,
+.nota-badge.nota-3 {
+    background: #d32f2f;
+}
+
+.nota-badge.nota-4,
+.nota-badge.nota-5,
+.nota-badge.nota-6 {
+    background: #fb8c00;
+}
+
+.nota-badge.nota-7,
+.nota-badge.nota-8 {
+    background: #fbc02d;
+    color: #333;
+}
+
+.nota-badge.nota-9,
+.nota-badge.nota-10 {
+    background: #43a047;
+}

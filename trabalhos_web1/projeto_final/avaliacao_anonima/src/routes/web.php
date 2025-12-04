@@ -5,39 +5,24 @@ use App\Http\Controllers\SetorController;
 use App\Http\Controllers\DispositivoController;
 use App\Http\Controllers\PerguntaController;
 use App\Http\Controllers\LoginController;
-
-
-Route::get('/', function () {
-
-    return view('questoes.index', ['dispositivo_id' => (int) 1]);
-});
+use App\Http\Controllers\RelatorioController;
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Proteger rotas administrativas
+Route::get('/', function () {
+    $dispositivoId = request()->cookie('dispositivo_id', 1);
+    return view('questoes.index', ['dispositivo_id' => (int) $dispositivoId]);
+})->middleware('verificar.dispositivo');
+
 Route::middleware('auth')->group(function () {
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('setores', SetorController::class)->parameters(['setores' => 'setor']);
-    Route::resource('dispositivos', DispositivoController::class);
     Route::resource('perguntas', PerguntaController::class);
-});
-
-// Rota pública (avaliação)
-Route::get('/', function () {
-    return view('questoes.index', ['dispositivo_id' => 1]);
-});
-
-// web.php (REMOVA DEPOIS DE USAR!)
-Route::get('/criptografar-senhas', function() {
-    $usuarios = \App\Models\Usuario::all();
-    foreach ($usuarios as $usuario) {
-        // Só criptografa se ainda não estiver
-        if (strlen($usuario->senha) < 60) {
-            $usuario->senha = bcrypt($usuario->senha);
-            $usuario->save();
-        }
-    }
-    return 'Senhas criptografadas!';
+    Route::get('/dispositivos/selecionar', [DispositivoController::class, 'selecionar'])->name('dispositivos.selecionar');
+    Route::post('/dispositivos/definir', [DispositivoController::class, 'definir'])->name('dispositivos.definir');
+    Route::resource('dispositivos', DispositivoController::class);
+    Route::get('/relatorios', [RelatorioController::class, 'index'])->name('relatorios.index');
+    Route::get('/relatorios/dados', [RelatorioController::class, 'dados'])->name('relatorios.dados');
 });

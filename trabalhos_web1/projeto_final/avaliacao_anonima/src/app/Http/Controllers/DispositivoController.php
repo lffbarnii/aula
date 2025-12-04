@@ -65,4 +65,30 @@ class DispositivoController extends Controller
         $dispositivo->delete();
         return redirect()->route('dispositivos.index')->with('success', 'Dispositivo removido!');
     }
+
+    public function selecionar()
+    {
+        $dispositivos = Dispositivo::where('status', true)
+            ->with('setor')
+            ->orderBy('id')
+            ->get();
+        
+        $dispositivoAtual = request()->cookie('dispositivo_id');
+        
+        return view('dispositivos.selecionar', compact('dispositivos', 'dispositivoAtual'));
+    }
+
+    public function definir(Request $request)
+    {
+        $request->validate([
+            'dispositivo_id' => 'required|exists:dispositivos,id'
+        ]);
+        
+        $dispositivo = Dispositivo::findOrFail($request->dispositivo_id);
+        
+        return redirect()
+            ->route('dispositivos.selecionar')
+            ->withCookie(cookie('dispositivo_id', $dispositivo->id, 60 * 24 * 365))
+            ->with('success', "Dispositivo '{$dispositivo->descricao}' selecionado com sucesso!");
+    }
 }

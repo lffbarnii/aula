@@ -12,23 +12,17 @@
         <div class="container">
             <h1>Sistema de Avaliação</h1>
             <nav class="main-nav">
+                <a href="{{ route('dispositivos.selecionar') }}">Selecionar Dispositivo</a>
+                
                 @auth
-                    <a href="{{ route('usuarios.index') }}" class="{{ request()->routeIs('usuarios.*') ? 'active' : '' }}">
-                        Usuários
-                    </a>
-                    <a href="{{ route('setores.index') }}" class="{{ request()->routeIs('setores.*') ? 'active' : '' }}">
-                        Setores
-                    </a>
-                    <a href="{{ route('dispositivos.index') }}" class="{{ request()->routeIs('dispositivos.*') ? 'active' : '' }}">
-                        Dispositivos
-                    </a>
-                    <a href="{{ route('perguntas.index') }}" class="{{ request()->routeIs('perguntas.*') ? 'active' : '' }}">
-                        Perguntas
-                    </a>
+                    <a href="{{ route('relatorios.index') }}" class="{{ request()->routeIs('relatorios.*') ? 'active' : '' }}">Relatórios</a>
+                    <a href="{{ route('usuarios.index') }}" class="{{ request()->routeIs('usuarios.*') ? 'active' : '' }}">Usuários</a>
+                    <a href="{{ route('setores.index') }}" class="{{ request()->routeIs('setores.*') ? 'active' : '' }}">Setores</a>
+                    <a href="{{ route('dispositivos.index') }}" class="{{ request()->routeIs('dispositivos.*') ? 'active' : '' }}">Dispositivos</a>
+                    <a href="{{ route('perguntas.index') }}" class="{{ request()->routeIs('perguntas.*') ? 'active' : '' }}">Perguntas</a>
                 @endauth
-                <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">
-                    Avaliação
-                </a>
+            
+                <a href="{{ url('/') }}">Avaliação</a>
 
                 @auth
                     <form action="{{ route('logout') }}" method="POST" class="inline-form">
