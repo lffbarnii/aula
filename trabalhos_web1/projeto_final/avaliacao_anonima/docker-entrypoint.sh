@@ -30,22 +30,10 @@ SESSION_LIFETIME=120
 EOF
 fi
 
-# Instala dependências
-if [ -f "/var/www/html/composer.json" ]; then
-    echo "Instalando dependências do Composer..."
-    cd /var/www/html
-    composer install --no-interaction --optimize-autoloader
-   
-    # Gera APP_KEY se estiver vazia
-    if grep -q "APP_KEY=$" /var/www/html/.env 2>/dev/null || grep -q "APP_KEY=\"\"" /var/www/html/.env 2>/dev/null; then
-        echo "Gerando APP_KEY..."
-        php artisan key:generate --force
-    fi
-   
-    # Ajusta permissões
-    chown -R www-data:www-data /var/www/html
-    chmod -R 755 /var/www/html
-    chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache 2>/dev/null || true
+# Gera APP_KEY se estiver vazia
+if grep -q "APP_KEY=$" /var/www/html/.env 2>/dev/null || grep -q "APP_KEY=\"\"" /var/www/html/.env 2>/dev/null; then
+    echo "Gerando APP_KEY..."
+    php artisan key:generate --force
 fi
 
 exec "$@"
