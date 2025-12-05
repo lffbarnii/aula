@@ -16,10 +16,10 @@ class LoginController extends Controller
     {
         $credentials = $request->validate([
             'login' => 'required',
-            'password' => 'required'
+            'senha' => 'required'
         ]);
 
-        if (Auth::attempt(['login' => $credentials['login'], 'password' => $credentials['password']], $request->filled('remember'))) {
+        if (Auth::attempt(['login' => $credentials['login'], 'password' => $credentials['senha']], $request->filled('remember'))) {
             $request->session()->regenerate();
             
             // Redireciona para onde estava tentando acessar OU para seleção de dispositivos
@@ -29,5 +29,15 @@ class LoginController extends Controller
         return back()->withErrors([
             'login' => 'Credenciais inválidas.',
         ])->withInput();
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        
+        return redirect('/login')->with('success', 'Logout realizado com sucesso!');
     }
 }

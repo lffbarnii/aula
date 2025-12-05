@@ -15,7 +15,7 @@
             <tr>
                 <th>ID</th>
                 <th>Descrição</th>
-                <th class="center">Ações</th>
+                <th class="center" colspan="2">Ações</th>
             </tr>
         </thead>
 
@@ -25,7 +25,11 @@
                 <td>{{ $setor->id }}</td>
                 <td>{{ $setor->descricao }}</td>
                 <td class="center">
-                    <a href="{{ route('setores.edit', $setor->id) }}">Editar</a> |
+                    <a href="{{ route('setores.edit', $setor->id) }}">
+                        <button class="btn-new">Editar</button>
+                    </a>
+                </td>
+                <td>
                     <form action="{{ route('setores.destroy', $setor->id) }}" method="POST" class="inline-form">
                         @csrf
                         @method('DELETE')

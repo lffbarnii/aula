@@ -6,6 +6,7 @@ use App\Http\Controllers\DispositivoController;
 use App\Http\Controllers\PerguntaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RelatorioController;
+use App\Http\Controllers\FeedbackController;
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -25,4 +26,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('dispositivos', DispositivoController::class);
     Route::get('/relatorios', [RelatorioController::class, 'index'])->name('relatorios.index');
     Route::get('/relatorios/dados', [RelatorioController::class, 'dados'])->name('relatorios.dados');
+    Route::get('/feedbacks', [FeedbackController::class, 'index'])->name('feedbacks.index');
 });

@@ -18,7 +18,7 @@
                 <th class="center">Ordem</th>
                 <th class="center">Status</th>
                 <th class="center">Setor</th>
-                <th class="center">Ações</th>
+                <th class="center" colspan="2">Ações</th>
             </tr>
         </thead>
 
@@ -31,7 +31,11 @@
                 <td class="center">{{ $p->status ? 'Ativa' : 'Inativa' }}</td>
                 <td class="center">{{ $p->setor->descricao ?? '-' }}</td>
                 <td class="center">
-                    <a href="{{ route('perguntas.edit', $p->id) }}">Editar</a> |
+                    <a href="{{ route('perguntas.edit', $p->id) }}">
+                        <button class="btn-new">Editar</button>
+                    </a>
+                </td>
+                <td class="center">
                     <form method="POST" action="{{ route('perguntas.destroy', $p->id) }}" class="inline-form">
                         @csrf
                         @method('DELETE')

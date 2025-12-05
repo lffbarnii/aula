@@ -1,3 +1,7 @@
+/* ========================================
+   RESET E CONFIGURAÇÕES GLOBAIS
+======================================== */
+
 body {
     font-family: "Inter", Arial, sans-serif;
     background-color: #f5f6fa;
@@ -11,6 +15,10 @@ body {
     max-width: 900px;
     margin: 0 auto;
 }
+
+/* ========================================
+   HEADER E NAVEGAÇÃO
+======================================== */
 
 .site-header {
     background-color: #1976d2;
@@ -51,9 +59,23 @@ body {
     font-weight: 600;
 }
 
+/* ========================================
+   CONTEÚDO PRINCIPAL
+======================================== */
+
 .site-content {
     padding: 40px 0;
 }
+
+.titulo-principal {
+    color: #1976d2;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+/* ========================================
+   FOOTER
+======================================== */
 
 .site-footer {
     background-color: #222;
@@ -75,6 +97,10 @@ body {
     color: #666;
 }
 
+/* ========================================
+   MODAL E CONTAINERS
+======================================== */
+
 .quiz-modal {
     background: white;
     border-radius: 12px;
@@ -88,11 +114,9 @@ body {
     margin-bottom: 12px;
 }
 
-.titulo-principal {
-    color: #1976d2;
-    text-align: center;
-    margin-bottom: 24px;
-}
+/* ========================================
+   FORMULÁRIOS
+======================================== */
 
 .form-group {
     margin: 18px 0;
@@ -119,13 +143,25 @@ body {
     box-sizing: border-box;
 }
 
+.form-group input[type="checkbox"] {
+    margin-right: 6px;
+}
+
 textarea {
     resize: vertical;
 }
 
-.form-group input[type="checkbox"] {
-    margin-right: 6px;
+.filtro-form {
+    margin-bottom: 24px;
 }
+
+.inline-form {
+    display: inline;
+}
+
+/* ========================================
+   BOTÕES
+======================================== */
 
 button {
     cursor: pointer;
@@ -159,6 +195,21 @@ button.btn-delete:hover:not([disabled]) {
 button.btn-new {
     margin-bottom: 16px;
 }
+
+button span[wire\:loading] {
+    font-style: italic;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+/* ========================================
+   TABELAS
+======================================== */
 
 table {
     width: 100%;
@@ -200,16 +251,18 @@ table td a:hover {
     text-decoration: underline;
 }
 
-.actions {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 20px;
+.tabela-secao {
+    margin: 32px 0;
 }
 
-.inline-form {
-    display: inline;
+.tabela-secao h4 {
+    color: #1976d2;
+    margin-bottom: 12px;
 }
+
+/* ========================================
+   ESCALA DE NOTAS
+======================================== */
 
 .escala-nota {
     display: flex;
@@ -256,14 +309,9 @@ table td a:hover {
     cursor: not-allowed;
 }
 
-button span[wire\:loading] {
-    font-style: italic;
-}
-
-.finalizado,
-.feedback {
-    text-align: center;
-}
+/* ========================================
+   MENSAGENS E NOTIFICAÇÕES
+======================================== */
 
 .error {
     color: #d32f2f;
@@ -288,9 +336,25 @@ button span[wire\:loading] {
     margin-bottom: 16px;
     text-align: center;
 }
-.filtro-form {
-    margin-bottom: 24px;
+
+.empty-message {
+    text-align: center;
+    color: #999;
+    padding: 48px;
+    font-style: italic;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 2px dashed #ddd;
 }
+
+.finalizado,
+.feedback {
+    text-align: center;
+}
+
+/* ========================================
+   ESTATÍSTICAS E CARDS
+======================================== */
 
 .stats-grid {
     display: grid;
@@ -326,6 +390,10 @@ button span[wire\:loading] {
     margin: 0;
 }
 
+/* ========================================
+   GRÁFICOS
+======================================== */
+
 .graficos-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -345,14 +413,9 @@ button span[wire\:loading] {
     text-align: center;
 }
 
-.tabela-secao {
-    margin: 32px 0;
-}
-
-.tabela-secao h4 {
-    color: #1976d2;
-    margin-bottom: 12px;
-}
+/* ========================================
+   BADGES E INDICADORES
+======================================== */
 
 .nota-badge {
     display: inline-block;
@@ -384,4 +447,272 @@ button span[wire\:loading] {
 .nota-badge.nota-9,
 .nota-badge.nota-10 {
     background: #43a047;
+}
+
+/* ========================================
+   FEEDBACKS
+======================================== */
+
+.feedbacks-lista {
+    margin-top: 32px;
+}
+
+.feedbacks-lista h4 {
+    color: #1976d2;
+    margin-bottom: 24px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.total-badge {
+    background: #1976d2;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.feedback-card {
+    background: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    padding: 0;
+    margin-bottom: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    transition: all 0.2s ease;
+}
+
+.feedback-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+    border-color: #1976d2;
+}
+
+.feedback-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.feedback-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.feedback-id {
+    background: #1976d2;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.feedback-dispositivo {
+    color: #333;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.feedback-setor {
+    color: #666;
+    font-size: 0.85rem;
+    padding: 4px 10px;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.feedback-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+.feedback-data {
+    color: #555;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.feedback-hora {
+    color: #999;
+    font-size: 0.8rem;
+}
+
+.feedback-conteudo {
+    padding: 20px;
+}
+
+.feedback-conteudo p {
+    margin: 0;
+    color: #444;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: #fafafa;
+    border-radius: 12px;
+    border: 2px dashed #ddd;
+}
+
+.empty-state p {
+    color: #999;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* ========================================
+   PAGINAÇÃO - CUSTOMIZADA
+======================================== */
+
+.pagination-wrapper {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.pagination-info {
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 500;
+    order: 1;
+}
+
+.pagination-container nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.pagination-container nav > div.hidden {
+    display: flex !important;
+    justify-content: center;
+    order: 2;
+}
+
+.pagination-container nav > div.hidden > div:first-child {
+    display: none !important;
+}
+
+.pagination-container nav span.relative.inline-flex {
+    box-shadow: none !important;
+    gap: 6px;
+    border-radius: 6px;
+}
+
+.pagination-container nav span.relative.inline-flex a,
+.pagination-container nav span.relative.inline-flex span {
+    padding: 6px 14px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 6px !important;
+    font-size: 0.9rem !important;
+    color: #1976d2;
+    text-decoration: none;
+    background: white;
+}
+
+.pagination-container nav span.relative.inline-flex span[aria-current="page"] {
+    background-color: #1976d2 !important;
+    color: white !important;
+    border-color: #1976d2 !important;
+    font-weight: bold;
+}
+
+.pagination-container nav span.relative.inline-flex a[rel="prev"],
+.pagination-container nav span.relative.inline-flex a[rel="next"] {
+    display: none !important;
+}
+
+.pagination-container nav > div.flex.justify-between {
+    display: flex !important;
+    justify-content: center;
+    gap: 20px;
+    order: 3;
+    width: 100%;
+}
+
+.pagination-container nav > div.flex.justify-between a,
+.pagination-container nav > div.flex.justify-between span {
+    padding: 10px 24px !important;
+    border-radius: 8px !important;
+    background-color: white !important;
+    border: 1px solid #1976d2 !important;
+    color: #1976d2 !important;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.pagination-container nav > div.flex.justify-between a:hover {
+    background-color: #1976d2 !important;
+    color: white !important;
+}
+
+.pagination-container nav > div.flex.justify-between span {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: #ccc !important;
+    color: #999 !important;
+    background-color: #f5f5f5 !important;
+}
+
+svg {
+    display: none;
+}
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 600px) {
+    .feedback-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .feedback-left {
+        width: 100%;
+    }
+    
+    .feedback-right {
+        align-items: flex-start;
+    }
+    
+    .pagination-container .pagination a,
+    .pagination-container .pagination span {
+        min-width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
+    }
+    
+    .pagination-container .pagination li:first-child a,
+    .pagination-container .pagination li:first-child span,
+    .pagination-container .pagination li:last-child a,
+    .pagination-container .pagination li:last-child span {
+        padding: 0 8px;
+        font-size: 0.8rem;
+    }
 }

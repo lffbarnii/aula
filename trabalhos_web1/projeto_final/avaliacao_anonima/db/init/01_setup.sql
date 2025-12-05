@@ -65,3 +65,8 @@ CREATE TABLE feedbacks (
     data_feedback TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     texto TEXT
 );
+
+-- ================================================
+-- 7. Inserir primeiro usuário
+-- ================================================
+INSERT INTO usuarios (login, senha) VALUES ('admin', '$2y$12$o9B6IPbtdqqpK7O7Jy4GhOgJYcMECCKBk71WwYzFtKPtcxVQ2GWQC') -- Senha é "admin123"

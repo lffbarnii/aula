@@ -20,7 +20,7 @@
 
         <div class="form-group">
             <label>Senha:</label>
-            <input type="password" name="password" required>
+            <input type="password" name="senha" required>
         </div>
 
         <button type="submit">Entrar</button>

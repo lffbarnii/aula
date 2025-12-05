@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Feedback extends Model
 {
     protected $table = 'feedbacks';
-
     protected $fillable = ['dispositivo_id', 'texto', 'data_feedback'];
-
+    
+    protected $casts = [
+        'data_feedback' => 'datetime',
+    ];
+    
     public $timestamps = false;
 
     public function dispositivo()

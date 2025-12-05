@@ -3,7 +3,7 @@
 
 @section('content')
 
-<div class="quiz-modal">
+<div class="quiz-modal" id="relatorios-container" data-url="{{ route('relatorios.dados') }}">
     <h3>Painel de Avaliações</h3>
 
     <form method="GET" action="{{ route('relatorios.index') }}" class="filtro-form">
@@ -134,7 +134,20 @@
             </tbody>
         </table>
     </div>
+
+    @if($respostasRecentes->hasPages())
+    <div class="pagination-wrapper">
+        <div class="pagination-info">
+            Mostrando {{ $respostasRecentes->firstItem() }} - {{ $respostasRecentes->lastItem() }} de {{ $respostasRecentes->total() }}
+        </div>
+        <div class="pagination-container">
+            {{ $respostasRecentes->appends(request()->query())->links() }}
+        </div>
+    </div>
+    @endif
+
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<script src="{{ asset('js/relatorios.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 @endsection

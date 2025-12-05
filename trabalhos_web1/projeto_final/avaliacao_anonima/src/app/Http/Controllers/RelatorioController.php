@@ -56,15 +56,14 @@ class RelatorioController extends Controller
             ->orderBy('setores.descricao')
             ->get();
 
-        $respostasRecentes = Resposta::with(['pergunta', 'dispositivo.setor'])
-            ->when($setorId, function($query) use ($setorId) {
+        $respostasRecentes = Resposta::with(['dispositivo', 'pergunta'])
+            ->when($setorId, function($query) use ($setorId) { 
                 $query->whereHas('dispositivo', function($q) use ($setorId) {
                     $q->where('setor_id', $setorId);
                 });
             })
-            ->orderBy('data_resposta', 'desc')
-            ->limit(20)
-            ->get();
+            ->latest('data_resposta')
+            ->paginate(20);
 
         return view('relatorios.index', compact(
             'setores',

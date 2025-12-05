@@ -15,7 +15,7 @@
             <tr>
                 <th>ID</th>
                 <th>Login</th>
-                <th class="center">Ações</th>
+                <th class="center" colspan="2">Ações</th>
             </tr>
         </thead>
 
@@ -25,7 +25,11 @@
                 <td>{{ $usuario->id }}</td>
                 <td>{{ $usuario->login }}</td>
                 <td class="center">
-                    <a href="{{ route('usuarios.edit', $usuario->id) }}">Editar</a> |
+                    <a href="{{ route('usuarios.edit', $usuario->id) }}">
+                        <button class="btn-new">Editar</button>
+                    </a>
+                </td>
+                <td>
                     <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" class="inline-form">
                         @csrf
                         @method('DELETE')

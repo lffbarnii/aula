@@ -17,7 +17,7 @@
                 <th>Descrição</th>
                 <th class="center">Status</th>
                 <th class="center">Setor</th>
-                <th class="center">Ações</th>
+                <th class="center" colspan="2">Ações</th>
             </tr>
         </thead>
 
@@ -29,7 +29,11 @@
                 <td class="center">{{ $item->status ? 'Ativo' : 'Inativo' }}</td>
                 <td class="center">{{ $item->setor->descricao ?? '-' }}</td>
                 <td class="center">
-                    <a href="{{ route('dispositivos.edit', $item->id) }}">Editar</a> |
+                    <a href="{{ route('dispositivos.edit', $item->id) }}">
+                        <button class="btn-new">Editar</button>
+                    </a>
+                </td>
+                <td>
                     <form method="POST" action="{{ route('dispositivos.destroy', $item->id) }}" class="inline-form">
                         @csrf
                         @method('DELETE')
