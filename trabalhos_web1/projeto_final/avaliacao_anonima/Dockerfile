@@ -16,12 +16,23 @@ RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available
 # Instala o Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
+# COPIA O CÓDIGO FONTE PARA DENTRO DO CONTAINER
+COPY ./src /var/www/html
+
+# Instala as dependências do Composer durante o build
+RUN if [ -f "composer.json" ]; then \
+    composer install --no-interaction --optimize-autoloader --no-dev; \
+    fi
+
+# Ajusta permissões
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache 2>/dev/null || true
+
 # Copia o script de entrada
 COPY docker-entrypoint.sh /usr/local/bin/
-
-RUN sed -i 's/\r$//' /usr/local/bin/docker-entrypoint.sh
-
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+RUN sed -i 's/\r$//' /usr/local/bin/docker-entrypoint.sh \
+    && chmod +x /usr/local/bin/docker-entrypoint.sh
 
 EXPOSE 80
 

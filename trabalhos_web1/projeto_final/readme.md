@@ -21,8 +21,8 @@ Siga os passos abaixo para levantar o ambiente de desenvolvimento. O projeto foi
 
 1.  **Clone o repositório** (ou baixe os arquivos):
     ```bash
-    git clone <URL_DO_SEU_REPOSITORIO>
-    cd <NOME_DA_PASTA>
+    git clone https://github.com/lffbarnii/aula.git
+    cd trabalhos_web1/projeto_final/avaliacao_anonima/
     ```
 
 2.  **Inicie os containers**:
