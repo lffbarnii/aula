@@ -7,10 +7,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Usuario extends Authenticatable
 {
     protected $table = 'usuarios';
-    protected $fillable = ['login', 'senha'];  // ← Importante!
+    protected $fillable = ['login', 'senha'];
     protected $hidden = ['senha'];
     
-    public $timestamps = false;  // ← Sua tabela não tem created_at/updated_at
+    public $timestamps = false;
     
     public function getAuthPassword()
     {
